@@ -1,0 +1,207 @@
+import SwiftUI
+
+struct HomeView: View {
+    @Binding var Makeios : [makeaniosapp]
+    @State var tap = false
+    @Environment(\.horizontalSizeClass) var horizontalClass
+    //
+    @State var open = false
+    @State var newmacOSapp = false
+    @State var newapp = false
+    
+    var body: some View {
+        ScrollView(.vertical, showsIndicators: false){
+        VStack{
+            Text("CoolApp")
+                .bold()
+                .font(.system(size: 60, weight: .black))
+            
+            Text("make some cool app")
+                .bold()
+                .padding(.bottom)
+            //Top title
+            if horizontalClass == .regular{
+                VStack{
+                HStack{
+                Button{
+                    
+                }label: {
+                    HStack {
+                        VStack(alignment: .leading){
+                            Text("Let's make an App")
+                                .bold()
+                                .font(.title2)
+                                .foregroundColor(.white)
+                            Text("View tutorial")
+                                .font(.caption)
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
+                        Image(systemName: "book.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(.white)
+                    }.shadow(radius: 5)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                }/////
+                    HStack{
+                Button{
+                    
+                }label: {
+                    
+                        VStack(alignment: .leading){
+                            Text("Designed for large screen")
+                                .bold()
+                                .font(.title3)
+                                .foregroundColor(.white)
+                            Text("Learn more")
+                                .font(.caption)
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
+                        Image(systemName: "ipad")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(.white)
+                    }.shadow(radius: 5)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                }/////
+                }
+                    Text("Make an App")
+                        .bold()
+                        .font(.title)
+                    first(open: $open, newmacOSapp: $newmacOSapp, newapp: $newapp,Makeios: $Makeios)
+                    Text("My App")
+                        .bold()
+                        .font(.title)
+                    ScrollView (.horizontal, showsIndicators: false){
+                        HStack{
+                        ForEach(Makeios){ (makeaniosapp) in
+                            Button{
+                                tap.toggle()
+                            }label: {
+                                
+                                VStack{
+                                    
+                                    Image(makeaniosapp.photo)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 180)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 5)
+                                    HStack{
+                                    VStack(alignment: .leading){
+                                        Text(makeaniosapp.name)
+                                            .bold()
+                                            .font(.title2)
+                                            .foregroundColor(.white)
+                                        Text(makeaniosapp.note)
+                                            .bold()
+                                            .font(.caption)
+                                            .foregroundColor(.white)
+                                            .padding(.trailing)
+                                    }
+                                        Spacer()
+                                    }.padding()
+                                        .background(Color.blue)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 5)
+                                }.padding(10)
+                                    .background()
+                                    .cornerRadius(10)
+                                    .shadow(radius: 5)
+                            }.padding().fullScreenCover(isPresented: $tap){
+                            }
+                            }
+                        
+                    }/////
+            }
+                }
+                
+            } else {
+                Button{
+                    
+                }label: {
+                HStack {
+                VStack(alignment: .leading){
+                    Text("Let's make an App")
+                        .bold()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                    Text("View tutorial")
+                        .font(.caption)
+                        .foregroundColor(.white)
+                }
+                    Spacer()
+                    Image(systemName: "book.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 35, height: 35)
+                        .foregroundColor(.white)
+                }.shadow(radius: 5)
+                .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                }/////
+                second(Makeios: $Makeios, open: $open, newmacOSapp: $newmacOSapp, newapp: $newapp)
+                Text("My App")
+                    .bold()
+                    .font(.title)
+                
+                ScrollView (.horizontal, showsIndicators: false){
+                    HStack{
+                ForEach(Makeios){ (makeaniosapp) in
+                    HStack{
+                    Button{
+                        tap.toggle()
+                    }label: {
+                        
+                    VStack{
+                        Image(makeaniosapp.photo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 180)
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                        HStack{
+                    VStack(alignment: .leading){
+                    Text(makeaniosapp.name)
+                        .bold()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        Text(makeaniosapp.note)
+                            .bold()
+                            .font(.caption)
+                            .foregroundColor(.white)
+                        
+                    }
+                        Spacer()
+                    }.padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                    }.padding(10)
+                        .background()
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                }.padding().fullScreenCover(isPresented: $tap){
+                    
+                }
+                        
+            }
+                }/////
+        }}
+            }
+        }.padding()
+    }
+}
+}
